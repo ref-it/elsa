@@ -1,0 +1,11 @@
+*
+!.gitignore
+
+public/build/
+vendor/
+node_modules/
+/.idea/
+/.vscode/
+
+/public/hot
+.env

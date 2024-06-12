@@ -1,0 +1,196 @@
+@import './fonts.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    font-size: 18px;
+}
+
+body {
+    @apply bg-zinc-50 dark:bg-zinc-800 h-full w-full grid grid-cols-1 lg:grid-cols-[18rem_1fr] overflow-hidden;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+main {
+    @apply h-full pt-4 lg:pt-10 pb-10 overflow-y-auto;
+}
+
+main > div {
+    @apply max-w-5xl mx-auto;
+}
+
+main h1 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+main h2 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    margin-top: 1.75rem;
+}
+
+main h3 {
+    font-size: 1.15rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    margin-top: 1.75rem;
+}
+
+main p {
+    margin-bottom: 1rem;
+}
+
+main p a {
+    @apply border-b-2 border-dotted border-emerald-800;
+}
+
+main p a:hover,
+main p a:focus,
+main p a:active {
+    @apply border-solid;
+}
+
+main table {
+    margin-bottom: 1rem;
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+}
+
+main table th {
+    @apply border border-zinc-400 dark:border-zinc-900 bg-zinc-300 dark:bg-zinc-600 px-3 py-1.5 text-left;
+}
+
+main table td {
+    @apply border border-zinc-400 dark:border-zinc-900 bg-zinc-100 dark:bg-zinc-700 px-3 py-1.5;
+}
+
+main table tr:nth-child(2n+1) td {
+    @apply bg-zinc-100 dark:bg-zinc-700;
+}
+
+main ul,
+main ol {
+    margin-bottom: 1rem;
+}
+
+main ul li {
+    margin-left: 2.25rem;
+    list-style-type: disc;
+}
+
+main ol li {
+    margin-left: 2.25rem;
+    list-style-type: decimal;
+}
+
+nav li.active > a {
+    @apply bg-emerald-800 hover:bg-emerald-800 text-white;
+}
+
+.results-info-box {
+    @apply grid grid-cols-[1fr_6.5rem] rounded-md shadow-sm dark:shadow-md overflow-hidden mb-4 border border-zinc-300 dark:border-zinc-600 dark:text-white;
+}
+
+.results-info-box > div:first-of-type {
+    @apply px-4 py-3 pl-6 dark:text-white;
+}
+
+.results-info-box > div:last-of-type {
+    @apply px-4 py-3 pr-6 dark:text-white text-right;
+}
+
+.candidate-box {
+    @apply grid grid-cols-[auto_1fr] lg:grid-cols-[auto_1fr_1fr] bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded-md shadow-sm dark:shadow-md border border-zinc-300 dark:border-zinc-600 overflow-hidden mb-4 dark:text-white;
+    transition: .3s ease;
+}
+
+.candidate-box-results {
+    @apply grid-cols-[auto_1fr_6.5rem] lg:grid-cols-[auto_1fr_1fr_9rem_7rem];
+}
+
+.candidate-box-resigned {
+    @apply grid-cols-[1fr_6.5rem] lg:grid-cols-[1fr_1fr_9rem_7rem];
+}
+
+.candidate-box > div {
+    @apply px-4 py-3 text-black dark:text-white;
+}
+
+.candidate-box > div:first-of-type {
+    @apply px-4 text-black dark:text-white row-span-2 lg:row-span-1 content-center;
+}
+
+.candidate-box-results > div:first-of-type {
+    @apply row-span-4 lg:row-span-1;
+}
+
+.candidate-box > div:nth-of-type(2) {
+    @apply pb-2 lg:pb-3;
+}
+
+.candidate-box > div:last-of-type {
+    @apply px-4 pt-0 lg:pt-3 pr-6 text-black dark:text-white;
+}
+
+.candidate-box-results > div:nth-of-type(2),
+.candidate-box-results > div:nth-of-type(3),
+.candidate-box-resigned > div:nth-of-type(1),
+.candidate-box-resigned > div:nth-of-type(2) {
+    @apply col-span-2 lg:col-span-1;
+}
+
+.candidate-box-results > div:nth-of-type(2),
+.candidate-box-resigned > div:nth-of-type(1) {
+    @apply pb-1 lg:pb-3;
+}
+
+.candidate-box-results > div:nth-of-type(3),
+.candidate-box-resigned > div:nth-of-type(2) {
+    @apply pt-0 pb-2 lg:py-3;
+}
+
+.candidate-box-results > div:nth-of-type(4),
+.candidate-box-results > div:nth-of-type(5),
+.candidate-box-resigned > div:nth-of-type(3),
+.candidate-box-resigned > div:nth-of-type(4) {
+    @apply pt-0 pb-3 lg:py-3;
+}
+
+.candidate-number {
+    @apply flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-emerald-800 text-[0.625rem] text-white;
+}
+
+.candidate-data-boxes {
+    @apply grid grid-cols-1 md:grid-cols-[auto_1fr] md:gap-y-2 mb-8;
+}
+
+.candidate-data-boxes .box-left {
+    @apply bg-zinc-200 dark:bg-zinc-700 px-4 py-2 rounded-t-md md:rounded-t-none md:rounded-l-md border border-zinc-300 dark:border-zinc-600 shadow-sm dark:shadow-md font-bold;
+}
+
+.candidate-data-boxes .box-right {
+    @apply mb-4 md:mb-0 bg-zinc-100 dark:bg-zinc-800 px-4 py-2 rounded-b-md md:rounded-b-none md:rounded-r-md border border-t-0 md:border-t md:border-l-0 border-zinc-300 dark:border-zinc-600 shadow-sm dark:shadow-md;
+}
+
+.question-answer-box {
+    @apply border border-zinc-300 dark:border-zinc-600 rounded-md overflow-hidden shadow-sm dark:shadow-md;
+}
+
+.question-answer-box > div:first-of-type {
+    @apply bg-zinc-200 dark:bg-zinc-700 px-4 py-2 border-b border-zinc-300 dark:border-zinc-600 font-bold;
+}
+
+.question-answer-box > div:last-of-type {
+    @apply bg-zinc-100 dark:bg-zinc-800 px-4 py-2;
+}
+
+.question-answer-box > div p:last-of-type {
+    margin-bottom: 0;
+}
