@@ -2,9 +2,7 @@
     <flux:button icon:trailing="chevron-down">
         @foreach(config('app.locales') as $key => $locale)
             @if(app()->getLocale() === $key)
-                <span aria-hidden="true">
-                    <x-icon name="flag-language-{{ $key }}" class="size-4" />
-                </span>
+                <flux:flag :country="$locale['flag']" size="xs" />
                 <span class="sr-only">{{ $locale['name'] }}</span>
             @endif
         @endforeach
@@ -18,9 +16,7 @@
                     class="flex w-full items-center"
                     :checked="app()->getLocale() === $key"
                 >
-                    <span aria-hidden="true" class="mr-3">
-                        <x-icon name="flag-language-{{ $key }}" class="size-4" />
-                    </span>
+                    <flux:flag :country="$locale['flag']" size="xs" class="mr-3" />
                     {{ $locale['name'] }}
                 </flux:menu.radio>
             @endforeach

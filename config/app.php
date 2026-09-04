@@ -129,11 +129,11 @@ return [
     'locales' => [
         'de' => [
             'name' => 'Deutsch (DE)',
-            'icon' => '&#127465;&#127466;',
+            'flag' => 'DE',
         ],
         'en' => [
             'name' => 'English (EN)',
-            'icon' => '&#127482;&#127480;',
+            'flag' => 'GB',
         ],
     ],
 
