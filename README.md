@@ -5,7 +5,7 @@ Elektronisches System für Abstimmungen
 ## Installation
 
 ```
-git clone https://github.com/schlagma/elsa
+git clone https://github.com/ref-it/elsa
 cd elsa
 composer install
 npm install

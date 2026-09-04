@@ -38,7 +38,7 @@
         <div class="mt-6 grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
             <flux:field>
                 <flux:label>{{ __('admin.election') }}</flux:label>
-                <flux:select variant="listbox" searchable wire:model.change="election">
+                <flux:select variant="listbox" searchable wire:model.live.change="election">
                     @foreach($elections as $election)
                         <flux:select.option value="{{ $election->id }}">{{ json_decode($election->name)[0] }}</flux:select.option>
                     @endforeach
@@ -46,7 +46,7 @@
             </flux:field>
             <flux:field>
                 <flux:label>{{ __('admin.committee') }}</flux:label>
-                <flux:select variant="listbox" searchable wire:model.change="committee">
+                <flux:select variant="listbox" searchable wire:model.live.change="committee">
                     @foreach($committees as $committee)
                         <flux:select.option value="{{ $committee->id }}">{{ json_decode($committee->name)[0] }}</flux:select.option>
                     @endforeach

@@ -18,7 +18,7 @@
         <div>
             <flux:field>
                 <flux:label>{{ __('admin.election') }}</flux:label>
-                <flux:select variant="listbox" searchable wire:model.change="election" placeholder="{{ __('common.selectAnOption') }}">
+                <flux:select variant="listbox" searchable wire:model.live.change="election" placeholder="{{ __('common.selectAnOption') }}">
                     @foreach($elections as $election)
                         <flux:select.option value="{{ $election->id }}">
                             @if(app()->getLocale() == "de")
@@ -34,7 +34,7 @@
         <div>
             <flux:field>
                 <flux:label for="filter-committee">{{ __('admin.committee') }}</flux:label>
-                <flux:select variant="listbox" searchable wire:model.change="committee" placeholder="{{ __('common.selectAnOption') }}">
+                <flux:select variant="listbox" searchable wire:model.live.change="committee" placeholder="{{ __('common.selectAnOption') }}">
                     @foreach($committees as $committee)
                         <flux:select.option value="{{ $committee->id }}">
                             @if(app()->getLocale() == "de")

@@ -1,0 +1,67 @@
+version: 2
+
+registries:
+  # Flux Pro is a paid, private Composer repository. Without these credentials
+  # Dependabot cannot resolve livewire/flux-pro and every Composer run fails.
+  # Add FLUXUI_USERNAME and FLUXUI_PASSWORD under
+  # Settings -> Secrets and variables -> Dependabot.
+  flux-pro:
+    type: composer-repository
+    url: https://composer.fluxui.dev
+    username: ${{secrets.FLUXUI_USERNAME}}
+    password: ${{secrets.FLUXUI_PASSWORD}}
+
+updates:
+  - package-ecosystem: composer
+    directory: "/"
+    registries:
+      - flux-pro
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 5
+    groups:
+      # One pull request for all routine updates; majors stay separate so a
+      # framework jump is reviewed on its own.
+      composer-minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
+    commit-message:
+      prefix: composer
+
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 5
+    groups:
+      npm-minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
+    commit-message:
+      prefix: npm
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Berlin
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+    commit-message:
+      prefix: actions

@@ -31,7 +31,7 @@
         </flux:field>
         <flux:field>
             <flux:label>{{ __('candidacy.faculty') }}</flux:label>
-            <flux:select variant="listbox" searchable wire:model.change="faculty" placeholder="{{ __('common.selectAnOption') }}">
+            <flux:select variant="listbox" searchable wire:model.live.change="faculty" placeholder="{{ __('common.selectAnOption') }}">
                 @foreach($faculties as $faculty)
                     <flux:select.option value="{{ $faculty->id }}">
                         @if(app()->getLocale() === 'de')
@@ -46,7 +46,7 @@
         </flux:field>
         <flux:field>
             <flux:label>{{ __('candidacy.course') }}</flux:label>
-            <flux:select variant="listbox" searchable wire:model.change="course" placeholder="{{ __('common.selectAnOption') }}">
+            <flux:select variant="listbox" searchable wire:model.live.change="course" placeholder="{{ __('common.selectAnOption') }}">
                 @foreach($courses as $course)
                     <flux:select.option value="{{ $course->id }}">
                         @if(app()->getLocale() === 'de')
@@ -71,7 +71,7 @@
     <div class="mt-6 grid sm:grid-cols-2 gap-6">
         <flux:field>
             <flux:label>{{ __('candidacy.committee') }}</flux:label>
-            <flux:select variant="listbox" searchable wire:model.change="committee" placeholder="{{ __('common.selectAnOption') }}">
+            <flux:select variant="listbox" searchable wire:model.live.change="committee" placeholder="{{ __('common.selectAnOption') }}">
                 @foreach($committees as $committee)
                     <flux:select.option value="{{ $committee->id }}">
                         @if(app()->getLocale() === 'de')

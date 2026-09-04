@@ -19,7 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware
             ->appendToGroup('web', LanguageMiddleware::class)
-            ->validateCsrfTokens(except: [
+            ->preventRequestForgery(except: [
                 'auth/backchannel-logout',
             ]);
     })

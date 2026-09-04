@@ -29,7 +29,7 @@
                 <flux:select
                     variant="listbox"
                     searchable
-                    wire:model.change="election"
+                    wire:model.live.change="election"
                     placeholder="{{ __('common.selectAnOption') }}"
                 >
                     @foreach($elections as $election)
@@ -50,7 +50,7 @@
                 <flux:select
                     variant="listbox"
                     searchable
-                    wire:model.change="faculty"
+                    wire:model.live.change="faculty"
                     placeholder="{{ __('common.selectAnOption') }}"
                 >
                     @foreach($faculties as $faculty)
@@ -71,7 +71,7 @@
                 <flux:select
                     variant="listbox"
                     searchable
-                    wire:model.change="committee"
+                    wire:model.live.change="committee"
                     placeholder="{{ __('common.selectAnOption') }}"
                 >
                     @foreach($committees as $committee)
