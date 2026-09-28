@@ -16,7 +16,7 @@ class Auth
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = Socialite::driver('oidc')->user();
+        $user = Socialite::driver('openidconnect')->user();
 
         if ($user->getName()) {
             return $next($request);

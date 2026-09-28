@@ -35,7 +35,7 @@ return [
         ],
     ],
 
-    'oidc' => [
+    'openidconnect' => [
         'client_id' => env('OIDC_CLIENT_ID'),
         'client_secret' => env('OIDC_CLIENT_SECRET'),
         'redirect' => env('OIDC_REDIRECT_URI'),

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec11bfbe6e3a58c4528f8e4fcef057d5",
+    "content-hash": "611e69be48043e1e857377da2ab22b0c",
     "packages": [
         {
             "name": "brick/math",
@@ -713,26 +713,26 @@
         },
         {
             "name": "firebase/php-jwt",
-            "version": "v7.1.0",
+            "version": "v7.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/php-jwt.git",
-                "reference": "b374a5d1a4f1f67fadc2165cdb284645945e2fc0"
+                "reference": "f502cdbf279cd7532060b041f7c22a05208c0b93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/php-jwt/zipball/b374a5d1a4f1f67fadc2165cdb284645945e2fc0",
-                "reference": "b374a5d1a4f1f67fadc2165cdb284645945e2fc0",
+                "url": "https://api.github.com/repos/googleapis/php-jwt/zipball/f502cdbf279cd7532060b041f7c22a05208c0b93",
+                "reference": "f502cdbf279cd7532060b041f7c22a05208c0b93",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.0"
             },
             "require-dev": {
-                "guzzlehttp/guzzle": "^7.4",
+                "guzzlehttp/guzzle": "^7.4||^8.0",
                 "phpfastcache/phpfastcache": "^9.2",
                 "phpseclib/phpseclib": "~3.0",
-                "phpspec/prophecy-phpunit": "^2.0",
+                "phpspec/prophecy-phpunit": "^2.2",
                 "phpunit/phpunit": "^9.5",
                 "psr/cache": "^2.0||^3.0",
                 "psr/http-client": "^1.0",
@@ -744,6 +744,14 @@
                 "phpseclib/phpseclib": "Support PS256 (RSASSA-PSS) signatures"
             },
             "type": "library",
+            "extra": {
+                "component": {
+                    "id": "jwt",
+                    "path": "Jwt",
+                    "entry": "README.md",
+                    "target": "googleapis/php-jwt.git"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Firebase\\JWT\\": "src"
@@ -773,9 +781,9 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/php-jwt/issues",
-                "source": "https://github.com/googleapis/php-jwt/tree/v7.1.0"
+                "source": "https://github.com/googleapis/php-jwt/tree/v7.2.0"
             },
-            "time": "2026-06-11T17:54:14+00:00"
+            "time": "2026-09-21T19:29:58+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -1326,74 +1334,6 @@
                 }
             ],
             "time": "2026-08-24T17:13:02+00:00"
-        },
-        {
-            "name": "kovah/laravel-socialite-oidc",
-            "version": "v0.8.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Kovah/laravel-socialite-oidc.git",
-                "reference": "cfd9c9a658da97b961d936159c45ca4ed082e62a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Kovah/laravel-socialite-oidc/zipball/cfd9c9a658da97b961d936159c45ca4ed082e62a",
-                "reference": "cfd9c9a658da97b961d936159c45ca4ed082e62a",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "firebase/php-jwt": "^6.4|^7.0",
-                "illuminate/http": "^9.0 | ^10.0 | ^11.0 | ^12.0 | ^13.0",
-                "illuminate/support": "^9.0 | ^10.0 | ^11.0 | ^12.0 | ^13.0",
-                "php": "^8.1",
-                "socialiteproviders/manager": "^4.0"
-            },
-            "conflict": {
-                "jp-gauthier/socialiteproviders-oidc": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SocialiteProviders\\OIDC\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "JPG Dev",
-                    "homepage": "https://jpgdev.com"
-                },
-                {
-                    "name": "Kevin Woblick",
-                    "email": "contact@woblick.dev",
-                    "homepage": "https://woblick.dev",
-                    "role": "Developer"
-                }
-            ],
-            "description": "OpenID Connect OAuth2 Provider for Laravel Socialite",
-            "homepage": "https://github.com/kovah/laravel-socialite-oidc",
-            "keywords": [
-                "laravel",
-                "oauth",
-                "oidc",
-                "provider",
-                "socialite"
-            ],
-            "support": {
-                "issues": "https://github.com/Kovah/laravel-socialite-oidc/issues",
-                "source": "https://github.com/Kovah/laravel-socialite-oidc/tree/v0.8.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/sponsors/kovah",
-                    "type": "github"
-                }
-            ],
-            "time": "2026-04-30T09:17:26+00:00"
         },
         {
             "name": "laravel/framework",
@@ -4347,6 +4287,68 @@
                 "source": "https://github.com/socialiteproviders/manager"
             },
             "time": "2026-08-16T00:16:22+00:00"
+        },
+        {
+            "name": "socialiteproviders/openidconnect",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/OpenIDConnect.git",
+                "reference": "7ed0f8b87c4feaa9bf1ec8704574b11e16c572d7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/OpenIDConnect/zipball/7ed0f8b87c4feaa9bf1ec8704574b11e16c572d7",
+                "reference": "7ed0f8b87c4feaa9bf1ec8704574b11e16c572d7",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-openssl": "*",
+                "firebase/php-jwt": "^7.0",
+                "illuminate/http": "^11.0 | ^12.0 | ^13.0",
+                "illuminate/support": "^11.0 | ^12.0 | ^13.0",
+                "php": "^8.2",
+                "socialiteproviders/manager": "^4.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "SocialiteProviders\\OpenIDConnect\\OpenIDConnectServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\OpenIDConnect\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "adrum"
+                }
+            ],
+            "description": "Generic OpenID Connect Provider for Laravel Socialite",
+            "keywords": [
+                "OpenId",
+                "laravel",
+                "oauth",
+                "oidc",
+                "openid-connect",
+                "provider",
+                "socialite"
+            ],
+            "support": {
+                "docs": "https://socialiteproviders.com/openidconnect",
+                "issues": "https://github.com/socialiteproviders/providers/issues",
+                "source": "https://github.com/socialiteproviders/providers"
+            },
+            "time": "2026-09-23T00:57:48+00:00"
         },
         {
             "name": "symfony/clock",
