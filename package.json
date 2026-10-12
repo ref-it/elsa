@@ -12,7 +12,7 @@
         "axios": "^1.6.4",
         "cropperjs": "^1.6.2",
         "laravel-vite-plugin": "^2.0",
-        "postcss": "^8.4.38",
+        "postcss": "^8.5.29",
         "tailwindcss": "^4.1.12",
         "vite": "^7.0.6"
     },
