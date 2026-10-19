@@ -2,9 +2,9 @@
 
 namespace App\Livewire\Public;
 
+use App\Support\CandidatePicture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -39,11 +39,7 @@ class Candidate extends Component
             abort('404');
         }
 
-        if ($candidate->picture != '') {
-            $pictureUrl = Storage::disk('local')->temporaryUrl('candidates/'.$candidate->picture.'.avif', now()->addMinutes(5));
-        } else {
-            $pictureUrl = null;
-        }
+        $pictureUrl = CandidatePicture::temporaryUrl($candidate->picture);
 
         $courseName = DB::table('courses')
             ->select('name')

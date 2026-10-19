@@ -2,11 +2,10 @@
 
 namespace App\Livewire\Admin\Candidates;
 
+use App\Support\CandidatePicture;
 use Flux\Flux;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
@@ -86,7 +85,7 @@ class CandidatesEdit extends Component
         $this->candidacyReceived = $candidate->candidacy_received;
         $this->approved = $candidate->approved;
         if ($candidate->picture) {
-            $this->pictureUrl = Storage::disk('local')->temporaryUrl('candidates/'.$candidate->picture.'.avif', now()->addMinutes(5));
+            $this->pictureUrl = CandidatePicture::temporaryUrl($candidate->picture);
         }
     }
 
@@ -173,41 +172,19 @@ class CandidatesEdit extends Component
 
     public function saveImage()
     {
-        $imgB64 = str_replace('data:image/jpeg;base64,', '', $this->imageCropped);
+        $picture = CandidatePicture::store($this->imageCropped);
 
-        if (strlen($imgB64) > 10 * 1024 * 1024) {
+        if (! $picture) {
             Flux::toast(variant: 'danger', text: __('admin.invalidImage'));
 
             return;
         }
 
-        $imgDecoded = base64_decode($imgB64, true);
-        $img = $imgDecoded ? @imagecreatefromstring($imgDecoded) : false;
-
-        if (! $img) {
-            Flux::toast(variant: 'danger', text: __('admin.invalidImage'));
-
-            return;
-        }
-
-        $imgID = Str::uuid();
-        $imgSize = 600;
-        $imgFileName = $imgID.'.avif';
-        $width = imagesx($img);
-        $height = imagesy($img);
-        $thumb = imagecreatetruecolor($imgSize, ($imgSize / $width) * $height);
-        imagecopyresized($thumb, $img, 0, 0, 0, 0, $imgSize, ($imgSize / $width) * $height, $width, $height);
-
-        ob_start();
-        imageavif($thumb, null);
-        $imgResult = ob_get_clean();
-
-        Storage::disk('local')->put('candidates/'.$imgFileName, $imgResult);
         DB::table('candidates')->where('id', $this->id)->update([
-            'picture' => $imgID,
+            'picture' => $picture,
         ]);
 
-        $this->pictureUrl = Storage::disk('local')->temporaryUrl('candidates/'.$imgFileName, now()->addMinutes(5));
+        $this->pictureUrl = CandidatePicture::temporaryUrl($picture);
 
         Flux::toast(variant: 'success', text: __('admin.pictureAdded'));
     }
@@ -220,9 +197,7 @@ class CandidatesEdit extends Component
             'picture' => null,
         ]);
 
-        if ($picture) {
-            Storage::disk('local')->delete('candidates/'.$picture.'.avif');
-        }
+        CandidatePicture::delete($picture);
 
         $this->pictureUrl = null;
 

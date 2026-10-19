@@ -128,90 +128,20 @@
                     type="file"
                     accept="image/*"
                     class="w-full h-60 px-3 py-2 border border-zinc-200 rounded-md cursor-pointer"
-                    :value="imageCropped"
+                    x-ref="input"
                     x-show="!imageIsSelected"
                     x-on:change="loadImage"
                 >
-                <img id="image" class="max-w-full h-60" x-show="imageIsSelected">
+                <x-image-cropper />
             </flux:field>
             <div class="flex justify-end gap-x-4 mt-6">
                 <flux:button icon="ban" @click="cancelImage">
                     {{ __('common.cancel') }}
                 </flux:button>
-                <flux:button variant="primary" icon="save" @click="cropImage">
+                <flux:button variant="primary" icon="save" loading x-bind:data-loading="saving || null" x-bind:disabled="saving" @click="cropImage">
                     {{ __('admin.cropAndSave') }}
                 </flux:button>
             </div>
         @endif
     </div>
 </div>
-
-@script
-<script>
-Alpine.data('cropper', () => {
-    return {
-        img: null,
-        imgInput: null,
-        file: null,
-        imageFile: null,
-        imageCropped: null,
-        imageIsSelected: false,
-        cropper: null,
-        loadImage() {
-            this.img = document.getElementById('image');
-            if (this.cropper != null) {
-                this.cropper.destroy();
-            }
-
-            this.cropper = new Cropper(this.img, {
-                zoomable: false,
-            });
-
-            this.file = event.target.files[0]
-
-            if (this.file.type.indexOf('image/') === -1) {
-                alert('Bitte wähle eine Bild-Datei aus. / Please select an image file.')
-                return
-            }
-
-            if (typeof FileReader === 'function') {
-                const reader = new FileReader()
-
-                reader.onload = (event) => {
-                    this.imageFile = event.target?.result
-                    this.cropper.replace(event.target?.result)
-                };
-
-                reader.readAsDataURL(this.file);
-                this.imageIsSelected = true;
-            } else {
-                alert('Dein Browser scheint die FileReader-API nicht zu unterstützen. / Your browser does not seem to support the FileReader API.')
-            }
-        },
-        cropImage() {
-            $wire.imageCropped = this.cropper.getCroppedCanvas().toDataURL('image/jpeg')
-            $wire.saveImage()
-        },
-        removeImage() {
-            $wire.removeImage()
-            this.file = null
-            this.imageFile = null
-            this.imageCropped = null
-            if (this.cropper != null) {
-                this.cropper.destroy()
-            }
-            this.imageIsSelected = false
-        },
-        cancelImage() {
-            this.file = null
-            this.imageFile = null
-            this.imageCropped = null
-            if (this.cropper != null) {
-                this.cropper.destroy()
-            }
-            this.imageIsSelected = false
-        }
-    }
-})
-</script>
-@endscript
