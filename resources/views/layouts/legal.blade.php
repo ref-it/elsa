@@ -12,7 +12,6 @@
         @livewireStyles
         @fluxAppearance
         @vite('resources/css/app.css')
-        @vite('resources/css/theme.css')
         @vite('resources/js/app.js')
     </head>
     <body>
