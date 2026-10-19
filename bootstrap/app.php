@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\ContentSecurityPolicyHeader;
 use App\Http\Middleware\LanguageMiddleware;
 use App\Http\Middleware\RobotsHeader;
 use Illuminate\Foundation\Application;
@@ -19,6 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware
+            ->appendToGroup('web', ContentSecurityPolicyHeader::class)
             ->appendToGroup('web', LanguageMiddleware::class)
             ->appendToGroup('web', RobotsHeader::class)
             ->preventRequestForgery(except: [

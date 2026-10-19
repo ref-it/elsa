@@ -11,7 +11,7 @@
         <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
         @livewireStyles
-        @fluxAppearance
+        @fluxAppearance(['nonce' => $cspNonce ?? null])
         @vite('resources/css/app.css')
         @vite('resources/js/app.js')
     </head>
@@ -31,6 +31,6 @@
         @endpersist
 
         @livewireScripts
-        @fluxScripts
+        @fluxScripts(['nonce' => $cspNonce ?? null])
     </body>
 </html>
