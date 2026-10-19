@@ -21,4 +21,23 @@ return [
 
     'report_uri' => env('CSP_REPORT_URI'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Additional Image Sources
+    |--------------------------------------------------------------------------
+    |
+    | Besides our own origin, images may be loaded from the OIDC provider,
+    | which serves the users' profile pictures - that one is derived from
+    | services.openidconnect.base_url and needs no entry here. Any further
+    | host goes into CSP_IMAGE_SOURCES, comma separated:
+    |
+    |     CSP_IMAGE_SOURCES="https://cdn.example.org,https://pics.example.org"
+    |
+    */
+
+    'image_sources' => array_values(array_filter(array_map(
+        'trim',
+        explode(',', (string) env('CSP_IMAGE_SOURCES', ''))
+    ))),
+
 ];

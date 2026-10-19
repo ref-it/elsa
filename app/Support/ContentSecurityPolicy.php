@@ -48,8 +48,9 @@ class ContentSecurityPolicy
             // are still limited to our own origin.
             'style-src' => ["'self'", "'unsafe-inline'", ...$devServer],
             // data: for the cropped picture the browser hands back, blob: for
-            // the preview of a freshly picked file.
-            'img-src' => ["'self'", 'data:', 'blob:'],
+            // the preview of a freshly picked file, plus whatever host serves
+            // the profile pictures.
+            'img-src' => ["'self'", 'data:', 'blob:', ...static::imageSources()],
             'font-src' => ["'self'"],
             'connect-src' => ["'self'", ...$devServer, ...static::viteDevSocket()],
             'worker-src' => ["'self'", 'blob:'],
@@ -66,6 +67,39 @@ class ContentSecurityPolicy
         return collect($directives)
             ->map(fn (array $sources, string $directive): string => trim($directive.' '.implode(' ', $sources)))
             ->implode('; ');
+    }
+
+    /**
+     * The profile pictures in the header come from the OIDC provider - the
+     * "picture" claim points at its own host - so that origin is allowed
+     * alongside ours. Should the pictures be served from somewhere else
+     * again, a CDN say, list those hosts in CSP_IMAGE_SOURCES.
+     */
+    protected static function imageSources(): array
+    {
+        return collect(config('csp.image_sources', []))
+            ->push(static::origin(config('services.openidconnect.base_url')))
+            ->filter()
+            ->unique()
+            ->values()
+            ->all();
+    }
+
+    /**
+     * Reduces a URL to the scheme, host and port a CSP source needs - a path
+     * in there would limit the match to that one directory.
+     */
+    protected static function origin(?string $url): ?string
+    {
+        $parts = parse_url((string) $url);
+
+        if (empty($parts['host'])) {
+            return null;
+        }
+
+        $port = isset($parts['port']) ? ':'.$parts['port'] : '';
+
+        return ($parts['scheme'] ?? 'https').'://'.$parts['host'].$port;
     }
 
     /**
