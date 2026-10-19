@@ -49,7 +49,7 @@ if ($lang) {
 }
 
 // Public Routes
-Route::get('/', [ElectionsController::class, 'forwardToCurrentElection']);
+Route::get('/', [ElectionsController::class, 'forwardToCurrentElection'])->name('home');
 // Route::get('/infos', [ElectionsController::class, 'getInfosForElection']);
 Route::livewire('/{election}/infos', ElectionInfo::class)->name('public-infos');
 Route::livewire('/{election}/committee/{id}', CommitteeInfo::class)->name('public-committee');

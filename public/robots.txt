@@ -1,0 +1,16 @@
+# The pages carrying personal data (candidates, candidacies, results) are not
+# blocked here on purpose: they serve a "noindex" instead, and a crawler has
+# to be allowed in to see it. A URL blocked below can still end up in an index
+# without ever having been fetched, which is why only the areas that must
+# never be crawled at all are listed.
+
+User-agent: *
+Disallow: /admin
+Disallow: /candidacy
+Disallow: /*/candidacy
+Disallow: /auth/
+Disallow: /livewire/
+Disallow: /storage/
+Disallow: /language/
+Disallow: /election/
+Disallow: /up
